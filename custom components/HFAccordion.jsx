@@ -1,6 +1,20 @@
 import React, { useRef, useState } from "react";
-import { Animated, LayoutAnimation, StyleSheet, View } from "react-native";
+import {
+    Animated,
+    LayoutAnimation,
+    Platform,
+    StyleSheet,
+    UIManager,
+    View,
+} from "react-native";
 import { Icon, TouchableRipple, Text } from "react-native-paper";
+
+//Enable Layout animation
+if (Platform.OS === "android") {
+    if (UIManager.setLayoutAnimationEnabledExperimental) {
+        UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+}
 
 const HFAccordion = ({ title, body, isOpen = false, containerStyle }) => {
     const [showContent, setShowContent] = useState(isOpen);
